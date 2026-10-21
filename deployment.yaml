@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-study-deployment
+  labels:
+    name: argocd-study
+    type: study
+
+spec:
+  selector:
+    matchLabels:
+      type: study
+  template:
+    metadata:
+      name: nothing-template
+      labels:
+        name: argocd-study
+        type: study
+    spec:
+      containers:
+        - name: container-nothing
+          image: alpine:3.20
+          command: ["tail", "-f", "/dev/null"]
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi
